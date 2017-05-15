@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AWT Project | Syed Zeeshan Akhtar</title>
+
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,400italic,300italic,300|Raleway:300,400,600' rel='stylesheet' type='text/css'>
+    
+    <link href="files/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="favicon.png" type="image/png" />    
+  </head>
+
+
+  <body>
+  <!--
+    <div data-bind="template: {name: 'startup', data: $data, templateUrl: '/pages/startup/view.js' }"></div>
+    <div data-bind="template: { name: 'person-template', data: buyer }"></div>
+  -->
+
+    <div id="startup_view_1">
+      <p><strong>View 1</strong></p>
+      <p>First name: <input data-bind="value: firstName" /></p>
+      <p>Last name: <input data-bind="value: lastName" /></p>
+      <div data-bind="htmlUrl: 'pages/startup/view.html'"></div>
+    </div>
+    <div id="startup_view_2">
+      <p><strong>View 2</strong></p>
+      
+      <p>University: <input data-bind="value: university" /></p>
+      <p>Location: <input data-bind="value: location" /></p>
+    </div>
+    <div id="startup_view_3">
+      <p><strong>View 3</strong></p>
+      <div data-bind="template: { name: 'person-template', data: buyer, afterRender: myPostProcessingLogic}"></div>
+      <div data-bind="template: { name: 'person-template', data: seller, afterRender: myPostProcessingLogic}"></div>
+    </div>
+    <div id="startup_view_4">
+      <p><strong>View 4</strong></p>
+      <div data-bind="template: { name: 'person-template', foreach: people, afterRender: myPostProcessingLogic }"></div>
+    </div>
+    
+  </body>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+  <script src="files/js/knockstrap.min.js"></script>
+  <script src="files/js/script.js"></script>
+  
+  <script type="text/html" id="person-template">
+    
+    <p><b>Name: </b><span data-bind="text: name"></span></p>
+    <p>Credits: <span data-bind="text: credits"></span></p>
+  </script>
+  <script src="pages/startup/viewmodel.js"></script>
+
+</html>
+
