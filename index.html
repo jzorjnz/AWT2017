@@ -22,12 +22,10 @@
     <div data-bind="template: { name: 'person-template', data: buyer }"></div>
   -->
 
-    <div id="startup_view_1">
-      <p><strong>View 1</strong></p>
-      <p>First name: <input data-bind="value: firstName" /></p>
-      <p>Last name: <input data-bind="value: lastName" /></p>
-      <div data-bind="htmlUrl: 'pages/startup/view.html'"></div>
+    <div id="main_view">
+      <div data-bind="template: { name: curTemplate, afterRender: myPostProcessingLogic}"></div>
     </div>
+    <!--
     <div id="startup_view_2">
       <p><strong>View 2</strong></p>
       
@@ -37,11 +35,11 @@
     <div id="startup_view_3">
       <p><strong>View 3</strong></p>
       <div data-bind="template: { name: curTemplate, data: buyer, afterRender: myPostProcessingLogic}"></div>
-      <div data-bind="template: { name: 'person-template', data: seller, afterAdd: myPostProcessingLogic}"></div>
+      <div data-bind="template: { name: curTemplate, data: seller, afterAdd: myPostProcessingLogic}"></div>
     </div>
     <div id="startup_view_4">
       <p><strong>View 4</strong></p>
-      <div data-bind="template: { name: 'person-template', foreach: people, afterRender: myPostProcessingLogic }"></div>
+      <div data-bind="template: { name: curTemplate, foreach: people, afterRender: myPostProcessingLogic }"></div>
     </div>
     
 
@@ -84,14 +82,15 @@
 
 
       <div data-bind="alert: { message: message, type: type }"></div>
-
-      <!-- ko alert: { message: 'Using virtual root element haha', type: 'success' } -->
-      <!-- /ko -->
-
       <div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate', type: 'danger' }"></div>
 
 
+
+
     </div>
+-->
+      <!-- ko alert: { message: 'Using virtual root element haha', type: 'success' } -->
+      <!-- /ko -->
     
 
 
@@ -108,13 +107,15 @@
   
   <script type="text/html" id="default-template"><p>Default template</p></script>
   <script type="text/html" id="person-template"><p>Person template</p></script>
+  <script type="text/html" id="startup-template">
+  </script>
   
   <script src="pages/startup/viewmodel.js"></script>
   
   <!--
   <script type="text/html" id="firstPopoverTemplate">
       <button class="close pull-right" type="button" data-dismiss="popover">×</button>
-      <p data-bind="text: text"></p>
+      <p datstartup_viewa-bind="text: text"></p>
   </script>
   -->
   <script type="text/html" id="firstPopoverTemplate"></script>

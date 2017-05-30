@@ -1,44 +1,19 @@
 // Create Viewmodels
-function viewModelStartup() {
-    var self = this;
-    
-    self.curTemplate = ko.observable('startup-template');
-    
-    self.myPostProcessingLogic = function(elements) {
-        // "elements" is an array of DOM nodes just rendered by the template
-        // You can add custom post-processing logic here
-        console.log('Running logic for view model startup...');
-    }
-
-    self.open_login = function() {
-        alert('Login.');
+function viewModel1() {
+    this.firstName = ko.observable("Syed Zeeshan");
+    this.lastName = ko.observable("Akhtar");
+    ko.bindingHandlers.htmlUrl = {
+        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+            $(element).load(valueAccessor(), function () {
+                $(element).children().each(function (index, child) {
+                    ko.applyBindings(bindingContext.$data, child);
+                });
+            });
+        },
+        update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+        console.log('htmlUrl called');
+        }
     };
-
-    self.open_signup = function() {
-        alert('Signup.');
-    };
-}
-
-function viewModelMain() {
-    var self = this;
-    
-    self.curTemplate = ko.observable('default-template');
-    
-    self.myPostProcessingLogic = function(elements) {
-        // "elements" is an array of DOM nodes just rendered by the template
-        // You can add custom post-processing logic here
-        console.log('Running logic for view model main...');
-        $('#startup-template').load('pages/startup/view.html', function() {
-        //knockout binding goes here
-            self.curTemplate('startup-template')
-            alert('Load was performed.');
-            var element = $('#main_view')[0]; 
-            ko.cleanNode(element);
-            console.log('applying bindings...')
-    });
-
-        
-    }
 }
 
 function viewModel2() {
@@ -139,15 +114,12 @@ function viewModel5() {
 
 
 // Activate knockout.js
-ko.applyBindings(new viewModelMain(), document.getElementById('main_view'));
-ko.applyBindings(new viewModelStartup(), document.getElementById('startup_view'));
-            
-/*
+ko.applyBindings(new viewModel1(), document.getElementById('startup_view_1'));
 ko.applyBindings(new viewModel2(), document.getElementById('startup_view_2'));
 ko.applyBindings(new viewModel3(), document.getElementById('startup_view_3'));
 ko.applyBindings(new viewModel4(), document.getElementById('startup_view_4'));
 ko.applyBindings(new viewModel5(), document.getElementById('startup_view_5'));
-*/
+
 
 
 
