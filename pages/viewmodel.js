@@ -5,20 +5,22 @@ function viewModelMain() {
     
     self.curTemplate = ko.observable('default-template');
     
+    self.switchToStartup = function(){
+        //knockout binding goes here
+        alert('Load was performed.');
+        var element = $('#main_view')[0]; 
+        ko.cleanNode(element);
+        ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
+    }
+
     self.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
         console.log('Running logic for view model main...');
         $('#startup-template').load('pages/startup/view.html', function() {
-            //knockout binding goes here
-            self.curTemplate('startup-template')
-            alert('Load was performed.');
-            var element = $('#main_view')[0]; 
-            ko.cleanNode(element);
-            ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
-            console.log('applying bindings...')
-      
+            self.switchToStartup();        
         });
+        
       
         
     }

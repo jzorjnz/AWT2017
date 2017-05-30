@@ -108,12 +108,16 @@
   <script type="text/html" id="default-template"><p>Default template</p></script>
   <script type="text/html" id="person-template"><p>Person template</p></script>
   <script type="text/html" id="startup-template">
+      <button class="btn btn-primary" data-bind="click: open_login">Login</button>
+      <button class="btn btn-primary" data-bind="click: open_signup">signup</button>
   </script>
   <script type="text/html" id="login-template">
+    <button class="btn btn-primary" data-bind="click: open_login">Login1</button>
+    <button class="btn btn-primary" data-bind="click: open_signup">signup1</button>
   </script>
   
-  <script src="pages/startup/viewmodel.js"></script>
   <script src="pages/login/viewmodel.js"></script>
+  <script src="pages/startup/viewmodel.js"></script>
   <script src="pages/viewmodel.js"></script>
   
   <!--

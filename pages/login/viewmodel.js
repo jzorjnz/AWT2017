@@ -10,15 +10,18 @@ function viewModelLogin() {
         console.log('Running logic for view model login...');
     }
 
+    self.swtichToStartUp = function(){
+        //knockout binding goes here
+        //self.curTemplate('startup-template')
+        alert('Load was performed.');
+        var element = $('#main_view')[0]; 
+        ko.cleanNode(element);
+        ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
+    }
+
     self.open_login = function() {
         $('#startup-template').load('pages/startup/view.html', function() {
-            //knockout binding goes here
-            self.curTemplate('startup-template')
-            alert('Load was performed.');
-            var element = $('#main_view')[0]; 
-            ko.cleanNode(element);
-            ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
-            console.log('applying bindings...')
+            self.swtichToStartUp();   
         });
     };
 
