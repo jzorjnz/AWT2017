@@ -24,7 +24,7 @@ function viewModel2() {
 function viewModel3() {
     this.buyer = { name: 'Syed Zeeshan Akhtar', credits: 250 };
     this.seller = { name: 'Mario', credits: 200 };
-    this.curTemplate = ko.observable('');
+    this.curTemplate = ko.observable('default-template');
     
     this.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
