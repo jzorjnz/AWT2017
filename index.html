@@ -44,10 +44,65 @@
       <div data-bind="template: { name: 'person-template', foreach: people, afterRender: myPostProcessingLogic }"></div>
     </div>
     
+
+    <div id="startup_view_5">
+      <div>
+          Lorem ipsum dolor sit amet, <a data-bind="tooltip: { title: 'Tooltip example' }">consectetur</a> adipiscing elit. 
+          Vestibulum nec pharetra eros. Sed luctus vitae ligula 
+          <a data-bind="tooltip: { title: tooltipTitle, placement: tooltipPlacement }">viverra</a> porttitor. 
+          Vestibulum porttitor egestas lacus.
+      </div>
+          
+      <input type="text" data-bind="value: tooltipTitle, valueUpdate: 'afterkeydown'" />
+      <div>
+          <input type="radio" name="tooltipPlacement" value="left" data-bind="checked: tooltipPlacement" />
+          Left
+          <input type="radio" name="tooltipPlacement" value="right" data-bind="checked: tooltipPlacement" />
+          Right
+          <input type="radio" name="tooltipPlacement" value="top" data-bind="checked: tooltipPlacement" />
+          Top
+          <input type="radio" name="tooltipPlacement" value="bottom" data-bind="checked: tooltipPlacement" />
+          Bottom
+      </div>
+
+
+      <button class="btn btn-primary" data-bind="popover: { 
+              options: { title: 'Popover with template', placement: 'top' }, 
+              template: popoverTemplate, 
+              data: { text: 'First template' }
+          }">Click</button>
+
+      <button class="btn" data-bind="click: switchTemplates">Switch templates</button>
+
+      <button class="btn btn-primary" data-bind="popover: { 
+              options: { title: 'Focus', content: 'Focus popover', trigger: 'focus', placement: 'bottom' } 
+          }">Focus</button>
+
+      <button class="btn btn-primary" data-bind="popover: { 
+              options: { title: 'Hover', content: 'Hover popover', trigger: 'hover' } 
+          }">Hover</button>
+
+
+      <div data-bind="alert: { message: message, type: type }"></div>
+
+      <div data-bind="alert: { message: 'Using custom alert template', template: 'alertExampleTemplate', type: 'danger' }"></div>
+
+      <!-- ko alert: { message: 'Using virtual root element', type: 'success' } -->
+      <!-- /ko -->
+
+
+    </div>
+    
+
+
+    
+
+
   </body>
 
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="files/js/knockstrap.min.js"></script>
   <script src="files/js/script.js"></script>
   
@@ -56,7 +111,25 @@
     <p><b>Name: </b><span data-bind="text: name"></span></p>
     <p>Credits: <span data-bind="text: credits"></span></p>
   </script>
+  
   <script src="pages/startup/viewmodel.js"></script>
+  
+  <!--
+  <script type="text/html" id="firstPopoverTemplate">
+      <button class="close pull-right" type="button" data-dismiss="popover">×</button>
+      <p data-bind="text: text"></p>
+  </script>
+  -->
+  <script type="text/html" id="firstPopoverTemplate"></script>
+  <script type="text/html" id="secondPopoverTemplate">
+      <p>Second template</p>
+  </script>
 
+  <script type="text/html" id="alertExampleTemplate">
+    <p data-bind="text: message"></p>
+    <button class="btn btn-primary" data-dismiss="alert">Close</button>
+  </script>
+
+  
 </html>
 

@@ -43,11 +43,51 @@ function viewModel4() {
     }
 }
 
+function viewModel5() {
+    this.tooltipTitle = ko.observable('Observable title');
+    this.tooltipPlacement = ko.observable('left');
+    this.templatesLoaded = false;
+
+    var self = this;
+    
+    self.popoverTemplate = ko.observable('firstPopoverTemplate');
+    self.switchTemplates = function() {
+        if(!this.templatesLoaded){
+            $('#firstPopoverTemplate').load('pages/startup/template.html', function() {
+                alert('Load was performed.');
+                //knockout binding goes here
+            });
+            this.templatesLoaded = true;
+        }
+        self.popoverTemplate() === 'firstPopoverTemplate' 
+                                    ? self.popoverTemplate('secondPopoverTemplate') 
+                                    : self.popoverTemplate('firstPopoverTemplate');
+    };
+
+    this.type = ko.observable('info');
+    
+    this.message = ko.observable('Alert message');
+
+    this.myPostProcessingLogic = function(elements) {
+        // "elements" is an array of DOM nodes just rendered by the template
+        // You can add custom post-processing logic here
+        console.log('Running logic for view model 5...');
+        $('#firstPopoverTemplate').load('template.html', function() {
+            alert('Load was performed.');
+            //knockout binding goes here
+        });
+    }
+}
+
+
+
+
 // Activate knockout.js
 ko.applyBindings(new viewModel1(), document.getElementById('startup_view_1'));
 ko.applyBindings(new viewModel2(), document.getElementById('startup_view_2'));
 ko.applyBindings(new viewModel3(), document.getElementById('startup_view_3'));
 ko.applyBindings(new viewModel4(), document.getElementById('startup_view_4'));
+ko.applyBindings(new viewModel5(), document.getElementById('startup_view_5'));
 
 
 
