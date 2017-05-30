@@ -31,12 +31,11 @@ function viewModel3() {
         // You can add custom post-processing logic here
         console.log('Running logic for view model 3...');
         $('#person-template').load('pages/startup/person-template.html', function() {
+            this.curTemplate = 'person-template';
             alert('Load was performed.');
             //knockout binding goes here
         });
-        this.curTemplate = 'person-template';
-
-        this.curTemplate.valueHasMutated();
+        
     }
 }
 
