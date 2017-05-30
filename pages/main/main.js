@@ -9,14 +9,14 @@ function viewModelMain() {
         //knockout binding goes here
         var element = $('#main_view')[0]; 
         ko.cleanNode(element);
-        ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
+        ko.applyBindings(new viewModelMainStartup(), document.getElementById('main_view'));
     }
 
     self.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
         console.log('Running logic for view model main...');
-        $('#startup-template').load('pages/startup/view.html', function() {
+        $('#main-startup-template').load('pages/manager/startup/view.html', function() {
             self.switchToStartup();        
         });
         

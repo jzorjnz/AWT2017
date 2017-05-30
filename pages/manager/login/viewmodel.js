@@ -1,16 +1,16 @@
 // Create Viewmodels
-function viewModelLogin() {
+function viewModelManagerLogin() {
     var self = this;
     
     self.username = ko.observable('');
     self.password = ko.observable('');
     
-    self.curTemplate = ko.observable('login-template');
+    self.curTemplate = ko.observable('manager-login-template');
     
     self.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
-        console.log('Running logic for view model login...');
+        console.log('Running logic for view model manager login...');
     }
 
     self.suc = function(data){
@@ -24,7 +24,7 @@ function viewModelLogin() {
     }
 
     self.err = function(jq, st, error){
-        alert(error);
+        alert(JSON.stringify(jq.responseJSON.error) + ' ' + error);
         //var observableData = ko.mapping.fromJS(data);
         //var array = observableData();
         //self.customerList(array);
@@ -42,8 +42,10 @@ function viewModelLogin() {
         /*
         
         */
+        //http_get('http://www.mocky.io/v2/592d00aa110000de196df8d9', null, self.suc, self.err);
 
-        http_get('http://www.mocky.io/v2/592d00aa110000de196df8d9', null, self.suc, self.err);
+
+        http_post('http://awt.ifmledit.org/api/user', {}, "APIKey " + apiKey, self.suc, self.err);
 
     }
 

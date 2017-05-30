@@ -109,13 +109,24 @@
   <script type="text/html" id="default-template"><p>Default template</p></script>
   <script type="text/html" id="person-template"><p>Person template</p></script>
   <script type="text/html" id="startup-template">
+    <button class="btn btn-primary" data-bind="click: open_login">Login</button>
+    <button class="btn btn-primary" data-bind="click: open_signup">signup</button>
   </script>
-  <script type="text/html" id="login-template">
+  <script type="text/html" id="manager-login-template">
   </script>
   
-  <script src="pages/login/viewmodel.js"></script>
-  <script src="pages/startup/viewmodel.js"></script>
-  <script src="pages/viewmodel.js"></script>
+  <script type="text/html" id="manager-startup-template">
+  </script>
+  
+  <script type="text/html" id="main-startup-template">
+  </script>
+  
+  
+  
+  <script src="pages/manager/login/viewmodel.js"></script>
+  <script src="pages/manager/startup/viewmodel.js"></script>
+  <script src="pages/main/startup/viewmodel.js"></script>
+  <script src="pages/main/main.js"></script>
   
   <!--
   <script type="text/html" id="firstPopoverTemplate">
