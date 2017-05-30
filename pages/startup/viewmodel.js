@@ -24,15 +24,24 @@ function viewModel2() {
 function viewModel3() {
     this.buyer = { name: 'Syed Zeeshan Akhtar', credits: 250 };
     this.seller = { name: 'Mario', credits: 200 };
-    this.curTemplate = ko.observable('default-template');
     
-    this.myPostProcessingLogic = function(elements) {
+    var self = this;
+    self.curTemplate = ko.observable('default-template');
+    
+    
+    self.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
         console.log('Running logic for view model 3...');
         $('#person-template').load('pages/startup/person-template.html', function() {
-            this.curTemplate = 'person-template';
+            
+            //self.curTemplate() === 'default-template' 
+            //                        ? self.curTemplate('person-template') 
+            //                        : self.curTemplate('default-template');
+
+            self.curTemplate('person-template')
             alert('Load was performed.');
+
             //knockout binding goes here
         });
         
@@ -59,19 +68,33 @@ function viewModel5() {
     var self = this;
     
     self.popoverTemplate = ko.observable('firstPopoverTemplate');
-    self.switchTemplates = function() {
+    
+    self.loadTemplates = function() {
         if(!this.templatesLoaded){
             $('#firstPopoverTemplate').load('pages/startup/template.html', function() {
                 alert('Load was performed.');
                 //knockout binding goes here
             });
             this.templatesLoaded = true;
+            self.switchTemplates();
         }
-        self.popoverTemplate() === 'firstPopoverTemplate' 
-                                    ? self.popoverTemplate('secondPopoverTemplate') 
-                                    : self.popoverTemplate('firstPopoverTemplate');
+        else{
+            self.switchTemplates();
+        }
     };
 
+    self.switchTemplates = function() {
+        if(!this.templatesLoaded){
+            self.loadTemplates();
+        }
+        else{
+            self.popoverTemplate() === 'firstPopoverTemplate' 
+                                    ? self.popoverTemplate('secondPopoverTemplate') 
+                                    : self.popoverTemplate('firstPopoverTemplate');
+        }
+    };
+
+    
     this.type = ko.observable('info');
     
     this.message = ko.observable('Alert message');
