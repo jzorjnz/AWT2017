@@ -35,6 +35,8 @@ function viewModel3() {
             //knockout binding goes here
         });
         this.curTemplate = 'person-template';
+
+        this.curTemplate.valueHasMutated();
     }
 }
 
