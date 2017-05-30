@@ -2,6 +2,9 @@
 function viewModelLogin() {
     var self = this;
     
+    self.username = ko.observable('');
+    self.password = ko.observable('');
+    
     self.curTemplate = ko.observable('login-template');
     
     self.myPostProcessingLogic = function(elements) {
