@@ -7,7 +7,6 @@ function viewModelMain() {
     
     self.switchToStartup = function(){
         //knockout binding goes here
-        alert('Load was performed.');
         var element = $('#main_view')[0]; 
         ko.cleanNode(element);
         ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
@@ -26,9 +25,12 @@ function viewModelMain() {
     }
 }
 
+
+$(document).ready(function () {
 // Activate knockout.js
 ko.applyBindings(new viewModelMain(), document.getElementById('main_view'));
 
 
 console.log('bindings applied!');
 
+});

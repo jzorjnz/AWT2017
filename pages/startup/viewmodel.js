@@ -13,7 +13,6 @@ function viewModelStartup() {
     self.switchToLogin = function(){
         //knockout binding goes here
         //self.curTemplate('login-template')
-        alert('Load was performed.');
         var element = $('#main_view')[0]; 
         ko.cleanNode(element);
         ko.applyBindings(new viewModelLogin(), document.getElementById('main_view'));

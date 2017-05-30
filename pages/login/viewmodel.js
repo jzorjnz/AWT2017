@@ -13,13 +13,38 @@ function viewModelLogin() {
         console.log('Running logic for view model login...');
     }
 
+    self.suc = function(data){
+        //if (result.url) {
+        //    location.href = result.url;
+        //}
+        console.log(data);
+        //var observableData = ko.mapping.fromJS(data);
+        //var array = observableData();
+        //self.customerList(array);
+    }
+
+    self.err = function(jq, st, error){
+        alert(error);
+        //var observableData = ko.mapping.fromJS(data);
+        //var array = observableData();
+        //self.customerList(array);
+    }
+
     self.swtichToStartUp = function(){
         //knockout binding goes here
         //self.curTemplate('startup-template')
-        alert('Load was performed.');
-        var element = $('#main_view')[0]; 
-        ko.cleanNode(element);
-        ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
+        
+        //alert('Load was performed.');
+        //var element = $('#main_view')[0]; 
+        //ko.cleanNode(element);
+        //ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
+
+        /*
+        
+        */
+
+        http_get('http://www.mocky.io/v2/592d00aa110000de196df8d9', null, self.suc, self.err);
+
     }
 
     self.open_login = function() {
