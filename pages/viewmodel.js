@@ -15,10 +15,11 @@ function viewModelMain() {
             alert('Load was performed.');
             var element = $('#main_view')[0]; 
             ko.cleanNode(element);
-            ko.applyBindings(new viewModelStartup(), document.getElementById('startup_view'));
+            ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
             console.log('applying bindings...')
-     });
-       
+      
+        });
+      
         
     }
 }

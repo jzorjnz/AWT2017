@@ -11,7 +11,7 @@ function viewModelStartup() {
     }
 
     self.open_login = function() {
-         $('#login-template').load('pages/login/view.html', function() {
+        $('#login-template').load('pages/login/view.html', function() {
             //knockout binding goes here
             self.curTemplate('login-template')
             alert('Load was performed.');
@@ -19,8 +19,8 @@ function viewModelStartup() {
             ko.cleanNode(element);
             ko.applyBindings(new viewModelLogin(), document.getElementById('main_view'));
             console.log('applying bindings...')
+        
         });
-    
         
     };
 
