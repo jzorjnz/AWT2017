@@ -27,7 +27,10 @@ function viewModel3() {
     this.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
-        console.log('Running logic for view model 3...');
+        $('#person-template').load('pages/startup/person-template.html', function() {
+            alert('Load was performed.');
+            //knockout binding goes here
+        });
     }
 }
 
