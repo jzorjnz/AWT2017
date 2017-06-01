@@ -16,7 +16,7 @@ function viewModelMain() {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
         console.log('Running logic for view model main...');
-        $('#main-startup-template').load('pages/manager/startup/view.html', function() {
+        $('#main-startup-template').load('pages/main/startup/view.html', function() {
             self.switchToStartup();        
         });
         
