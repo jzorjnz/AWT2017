@@ -1,127 +1,94 @@
 // Create Viewmodels
-function viewModel1() {
-    this.firstName = ko.observable("Syed Zeeshan");
-    this.lastName = ko.observable("Akhtar");
-    ko.bindingHandlers.htmlUrl = {
-        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-            $(element).load(valueAccessor(), function () {
-                $(element).children().each(function (index, child) {
-                    ko.applyBindings(bindingContext.$data, child);
-                });
-            });
-        },
-        update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-        console.log('htmlUrl called');
-        }
-    };
-}
-
-function viewModel2() {
-    this.university = ko.observable("Polimi");
-    this.location = ko.observable("Como, Italy");
-}
-
-function viewModel3() {
-    this.buyer = { name: 'Syed Zeeshan Akhtar', credits: 250 };
-    this.seller = { name: 'Mario', credits: 200 };
-    
+function viewModelManagerSignup() {
     var self = this;
-    self.curTemplate = ko.observable('default-template');
     
+    self.username = ko.observable('testm');
+    self.fullname = ko.observable('TestM');
+    self.password = ko.observable('12345678');
     
+    self.curTemplate = ko.observable('manager-signup-template');
     self.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
-        console.log('Running logic for view model 3...');
-        $('#person-template').load('pages/startup/person-template.html', function() {
-            
-            //self.curTemplate() === 'default-template' 
-            //                        ? self.curTemplate('person-template') 
-            //                        : self.curTemplate('default-template');
+        console.log('Running logic for view model manager signup...');
+    }
 
-            self.curTemplate('person-template')
-            alert('Load was performed.');
-
-            //knockout binding goes here
-        });
+    self.swtichToStartUp = function(){
+        //knockout binding goes here
+        //self.curTemplate('startup-template')
         
+        //alert('Load was performed.');
+        //var element = $('#main_view')[0]; 
+        //ko.cleanNode(element);
+        //ko.applyBindings(new viewModelStartup(), document.getElementById('main_view'));
+
+        /*
+        
+        */
+       
     }
-}
 
-function viewModel4() {
-    this.people = [
-         { name: 'Syed Zeeshan Akhtar', credits: 250 },
-         { name: 'Mario', credits: 200 }
-     ];
-     this.myPostProcessingLogic = function(elements) {
-        // "elements" is an array of DOM nodes just rendered by the template
-        // You can add custom post-processing logic here
-        console.log('Running logic for view model 4...');
+    self.suc = function(data){
+        //if (result.url) {
+        //    location.href = result.url;
+        //}
+        console.log(data);
+        alert("Signup successful. Login to continue!");
+        self.go_back();
+        //$('#startup-template').load('pages/startup/view.html', function() {
+        //    self.swtichToStartUp();   
+        //});
+        
+        //var observableData = ko.mapping.fromJS(data);
+        //var array = observableData();
+        //self.customerList(array);
     }
-}
 
-function viewModel5() {
-    this.tooltipTitle = ko.observable('Observable title');
-    this.tooltipPlacement = ko.observable('left');
-    this.templatesLoaded = false;
+    self.err = function(jq, st, error){
+        if(error){
+            if(error.toString().includes("Unexpected end of JSON input")){
+                alert("Signup successful. Login to continue!");
+                self.go_back();
+            }
+        }
+        if(jq.responseJSON && jq.responseJSON.error){
+            if(jq.responseJSON.error.type){
+                alert(jq.responseJSON.error.type);
+            }
+            else if(jq.responseJSON.error.username){
+                alert(jq.responseJSON.error.username);
+            }
+            else{
+                alert(JSON.stringify(jq.responseJSON.error));
+            }
+        }
+        else if(jq.responseJSON){
+            alert('response' + JSON.stringify(jq.responseJSON));
+        }
+        //var observableData = ko.mapping.fromJS(data);
+        //var array = observableData();
+        //self.customerList(array);
+    }
 
-    var self = this;
-    
-    self.popoverTemplate = ko.observable('firstPopoverTemplate');
-    
-    self.loadTemplates = function() {
-        if(!this.templatesLoaded){
-            $('#firstPopoverTemplate').load('pages/startup/template.html', function() {
-                alert('Load was performed.');
-                //knockout binding goes here
-            });
-            this.templatesLoaded = true;
-            self.switchTemplates();
-        }
-        else{
-            self.switchTemplates();
-        }
+    self.signup = function() {
+        //http_get('http://www.mocky.io/v2/592d00aa110000de196df8d9', null, self.suc, self.err);
+        
+        http_post('http://awt.ifmledit.org/api/user', {'username': self.username(), 'fullname': self.fullname(), 'password': '' + self.password(), 'type': 'master'}, "APIKey " + apiKey, self.suc, self.err);
+        //http_post('http://awt.ifmledit.org/api/user', {'username': 'testm3', 'fullname': 'TestM3', 'password': '12345678', 'type': 'master'}, "APIKey " + apiKey, self.suc, self.err);
     };
 
-    self.switchTemplates = function() {
-        if(!this.templatesLoaded){
-            self.loadTemplates();
-        }
-        else{
-            self.popoverTemplate() === 'firstPopoverTemplate' 
-                                    ? self.popoverTemplate('secondPopoverTemplate') 
-                                    : self.popoverTemplate('firstPopoverTemplate');
-        }
-    };
+    self.goBack = function(){
+        //knockout binding goes here
+        //self.curTemplate('login-template')
+        var element = $('#main_view')[0]; 
+        ko.cleanNode(element);
+        //$('#manager-signup-template').empty();
+        ko.applyBindings(new viewModelManagerStartup(), document.getElementById('main_view'));
+    }
 
-    
-    this.type = ko.observable('info');
-    
-    this.message = ko.observable('Alert message');
-
-    this.myPostProcessingLogic = function(elements) {
-        // "elements" is an array of DOM nodes just rendered by the template
-        // You can add custom post-processing logic here
-        console.log('Running logic for view model 5...');
-        $('#firstPopoverTemplate').load('template.html', function() {
-            alert('Load was performed.');
-            //knockout binding goes here
+    self.go_back = function() {
+        $('#manager-startup-template').load('pages/manager/startup/view.html', function() {
+            self.goBack(); 
         });
-    }
+    };
 }
-
-
-
-
-// Activate knockout.js
-ko.applyBindings(new viewModel1(), document.getElementById('startup_view_1'));
-ko.applyBindings(new viewModel2(), document.getElementById('startup_view_2'));
-ko.applyBindings(new viewModel3(), document.getElementById('startup_view_3'));
-ko.applyBindings(new viewModel4(), document.getElementById('startup_view_4'));
-ko.applyBindings(new viewModel5(), document.getElementById('startup_view_5'));
-
-
-
-
-console.log('bindings applied!');
-

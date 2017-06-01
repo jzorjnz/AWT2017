@@ -2,32 +2,13 @@
 function viewModelManagerLogin() {
     var self = this;
     
-    self.username = ko.observable('');
-    self.password = ko.observable('');
-    
+    self.username = ko.observable('testm');
+    self.password = ko.observable('12345678');
     self.curTemplate = ko.observable('manager-login-template');
-    
     self.myPostProcessingLogic = function(elements) {
         // "elements" is an array of DOM nodes just rendered by the template
         // You can add custom post-processing logic here
         console.log('Running logic for view model manager login...');
-    }
-
-    self.suc = function(data){
-        //if (result.url) {
-        //    location.href = result.url;
-        //}
-        console.log(data);
-        //var observableData = ko.mapping.fromJS(data);
-        //var array = observableData();
-        //self.customerList(array);
-    }
-
-    self.err = function(jq, st, error){
-        alert(JSON.stringify(jq.responseJSON.error) + ' ' + error);
-        //var observableData = ko.mapping.fromJS(data);
-        //var array = observableData();
-        //self.customerList(array);
     }
 
     self.swtichToStartUp = function(){
@@ -42,20 +23,77 @@ function viewModelManagerLogin() {
         /*
         
         */
-        //http_get('http://www.mocky.io/v2/592d00aa110000de196df8d9', null, self.suc, self.err);
+    }
+    
+    self.suc = function(data){
+        //if (result.url) {
+        //    location.href = result.url;
+        //}
+        console.log(data);
+        if(data.token){
+            session.authToken = data.token;
+            session.username = self.username();
+            self.open_home();
+        }
+        else{
+            alert(JSON.stringify(data));
+        }
+        
+        //$('#startup-template').load('pages/startup/view.html', function() {
+        //    self.swtichToStartUp();   
+        //});
 
-
-        http_post('http://awt.ifmledit.org/api/user', {}, "APIKey " + apiKey, self.suc, self.err);
-
+        //var observableData = ko.mapping.fromJS(data);
+        //var array = observableData();
+        //self.customerList(array);
     }
 
-    self.open_login = function() {
-        $('#startup-template').load('pages/startup/view.html', function() {
-            self.swtichToStartUp();   
+    self.err = function(jq, st, error){
+        if(jq.responseJSON && jq.responseJSON.error){
+            alert(JSON.stringify(jq.responseJSON.error));
+        }
+        else{
+            alert("jq: " + JSON.stringify(jq));
+            
+        }
+        //var observableData = ko.mapping.fromJS(data);
+        //var array = observableData();
+        //self.customerList(array);
+    }
+
+    
+    self.login = function() {
+        //http_get('http://www.mocky.io/v2/592d00aa110000de196df8d9', null, self.suc, self.err);
+        http_post('http://awt.ifmledit.org/api/auth', {'username': '' + self.username(), 'password': '' + self.password()}, "APIKey " + apiKey, self.suc, self.err);
+    };
+    
+    self.goBack = function(){
+        //knockout binding goes here
+        //self.curTemplate('login-template')
+        var element = $('#main_view')[0]; 
+        ko.cleanNode(element);
+        //$('#manager-login-template').empty();
+        ko.applyBindings(new viewModelManagerStartup(), document.getElementById('main_view'));
+    }
+
+    self.go_back = function() {
+        $('#manager-startup-template').load('pages/manager/startup/view.html', function() {
+            self.goBack(); 
         });
     };
 
-    self.open_signup = function() {
-        alert('Signup.');
+    self.gotoHome = function(){
+        //knockout binding goes here
+        //self.curTemplate('login-template')
+        var element = $('#main_view')[0]; 
+        ko.cleanNode(element);
+        //$('#manager-login-template').empty();
+        ko.applyBindings(new viewModelManagerHome(), document.getElementById('main_view'));
+    }
+
+    self.open_home = function() {
+        $('#manager-home-template').load('pages/manager/home/view.html', function() {
+            self.gotoHome(); 
+        });
     };
 }

@@ -1,0 +1,19 @@
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header" style="">
+          <a data-bind="click: logout" class="navbar-brand" ><span class="glyphicon glyphicon-log-in"></span> Logout </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Manager Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a>Welcome <span data-bind="text: fullname"></span></a></li>
+          <li><a data-bind="click: open_profile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    <p>Username: <strong data-bind="text: username" /></p>
+    <p>Full name: <strong data-bind="text: fullname" /></p>
+    <p>Type: <strong data-bind="text: type" /></p><br>
+  

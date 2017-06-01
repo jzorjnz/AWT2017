@@ -15,6 +15,7 @@ function viewModelMainStartup() {
         //self.curTemplate('login-template')
         var element = $('#main_view')[0]; 
         ko.cleanNode(element);
+        //$('#main-startup-template').empty();
         ko.applyBindings(new viewModelManagerStartup(), document.getElementById('main_view'));
     }
 

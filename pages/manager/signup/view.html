@@ -1,12 +1,53 @@
-
-<div id="startup_view_1">
-    <p><strong>View 1</strong></p>
-    <p>First name: <input data-bind="value: firstName" /></p>
-    <p>Last name: <input data-bind="value: lastName" /></p>
-  </div>
-  <div id="startup_view_2">
-    <p><strong>View 2</strong></p>
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" data-bind="click: go_back"><span class="glyphicon glyphicon-arrow-left"></span> Go Back</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a >Manager Signup</a></li>
+        </ul>
+      </div>
+    </nav>
     
-    <p>University: <input data-bind="value: university" /></p>
-    <p>Location: <input data-bind="value: location" /></p>
-  </div>
+    <div class="container" style="margin-top:16px; max-width:512px;">
+
+      <form class="well form-horizontal">
+        <fieldset style= 'color:#2c3e55;'>
+        <legend style= 'color:#2c3e55;'>Signup</legend>
+        <div class="form-group" style="margin:16px;">
+          <div class="row">
+            <label class="col-md-4 control-label" for="username">Username</label>  
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color:#2c3e55;"></i></span>
+                <input  name="username" placeholder="Username" class="form-control" data-bind="value: username" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:8px;">
+            <label class="col-md-4 control-label" for="fullname">Full name</label>  
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color:#2c3e55;"></i></span>
+                <input  name="fullname" placeholder="Fullname" class="form-control" data-bind="value: fullname" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:8px;">
+            <label class="col-md-4 control-label" for="password">Password</label>  
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color:#2c3e55;"></i></span>
+                <input  name="password" placeholder="Password" class="form-control" data-bind="value: password, enterkey: signup" type="password">
+              </div>
+            </div>
+          </div>
+
+            <button class="btn btn-primary btn-block" style="margin-top:16px;" data-bind="click: signup">Signup</button>
+          
+        </div>
+      </form>
+    </div>
+  

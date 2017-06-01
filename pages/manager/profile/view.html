@@ -1,0 +1,18 @@
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" data-bind="click: go_back"><span class="glyphicon glyphicon-arrow-left"></span> Go Back</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a >Manager Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    <p>Username: <strong data-bind="text: username" /></p>
+    <p>Type: <strong data-bind="text: type" /></p><br>
+    <h3>Edit Profile:</h3>
+    <p>Full name: <input data-bind="value: fullname" /></p>
+    <p>Password: <input type="password" data-bind="value: password" /></p>
+    <button class="btn btn-primary" data-bind="click: save">Save</button>
+  

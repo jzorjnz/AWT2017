@@ -15,7 +15,17 @@ function viewModelManagerStartup() {
         //self.curTemplate('login-template')
         var element = $('#main_view')[0]; 
         ko.cleanNode(element);
+        //$('#manager-startup-template').empty();
         ko.applyBindings(new viewModelManagerLogin(), document.getElementById('main_view'));
+    }
+
+    self.switchToSignup = function(){
+        //knockout binding goes here
+        //self.curTemplate('login-template')
+        var element = $('#main_view')[0]; 
+        ko.cleanNode(element);
+        //$('#manager-startup-template').empty();
+        ko.applyBindings(new viewModelManagerSignup(), document.getElementById('main_view'));
     }
 
     self.open_login = function() {
@@ -25,6 +35,23 @@ function viewModelManagerStartup() {
     };
 
     self.open_signup = function() {
-        alert('Signup.');
+        $('#manager-signup-template').load('pages/manager/signup/view.html', function() {
+            self.switchToSignup(); 
+        });
+    };
+
+    self.goBack = function(){
+        //knockout binding goes here
+        //self.curTemplate('login-template')
+        var element = $('#main_view')[0]; 
+        ko.cleanNode(element);
+        //$('#manager-startup-template').empty();
+        ko.applyBindings(new viewModelMainStartup(), document.getElementById('main_view'));
+    }
+
+    self.go_back = function() {
+        $('#main-startup-template').load('pages/main/startup/view.html', function() {
+            self.goBack(); 
+        });
     };
 }
